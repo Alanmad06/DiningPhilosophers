@@ -24,7 +24,7 @@ public class Filosofo implements Runnable{
     JLabel Palillos[];
     ImageIcon iconThinking = new ImageIcon(getClass().getResource("../images/thinking.gif"));
     ImageIcon iconFilosofo = new ImageIcon(getClass().getResource("../images/filosofo1.png"));
-    ImageIcon iconEating = new ImageIcon(getClass().getResource("../images/dumplin1.gif"));
+   
     
     
     public Filosofo(Palillos palillos, int id , JLabel Label, JLabel[] Palillos) {
@@ -43,11 +43,10 @@ public class Filosofo implements Runnable{
     @Override
     public void run() {
         while(true){
-             Filosofo.setIcon(iconFilosofo);
+            Filosofo.setIcon(iconFilosofo);
             thinking();
             this.palillos.consumiendo(palillo1, palillo2, id ,Filosofo,Palillos[palillo1],Palillos[palillo2]);
-            eating();
-            this.palillos.dejarPalillos(palillo1,palillo2, id ,Filosofo,Palillos[palillo1],Palillos[palillo2]);
+            
         }
         
         
@@ -59,7 +58,11 @@ public class Filosofo implements Runnable{
             if(i == 0 && i == id){
                 this.palillo1 = this.palillos.getPalillos().length-1;
                 this.palillo2 = 0;
-            }else if(i==id){
+            }else if(i==id && i==palillos.getPalillos().length-1){
+                this.palillo2 = i-1;
+                this.palillo1 = i;
+            }
+            else if(i==id){
                 this.palillo1 = i-1;
                 this.palillo2 = i;
             }
@@ -71,7 +74,7 @@ public class Filosofo implements Runnable{
     public void thinking(){
         System.out.println("Pensando Filosofo "+id);
         try {
-             int numeroAleatorio = rand.nextInt(4001) + 6000;
+             long numeroAleatorio = (long) (Math.random() * 4000);
              System.out.println("Pensando por "+numeroAleatorio+" Filosofo "+id);
              Filosofo.setIcon(iconThinking);
         
@@ -81,17 +84,7 @@ public class Filosofo implements Runnable{
         }
     }
     
-    public void eating(){
-        System.out.println("Pensando Comiendo "+id);
-        try {
-             int numeroAleatorio = rand.nextInt(2001) + 3000;
-             System.out.println("Comiendo por "+numeroAleatorio+" Filosofo "+id);
-         Filosofo.setIcon(iconEating);
-            sleep(numeroAleatorio);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
     
     
     

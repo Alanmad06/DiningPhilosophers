@@ -90,19 +90,41 @@ public class Visual extends javax.swing.JFrame {
         tenedor4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/palo.png"))); // NOI18N
         jPanel1.add(tenedor4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
 
+        filosofo0.setForeground(new java.awt.Color(185, 133, 81));
         filosofo0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/filosofo1.png"))); // NOI18N
+        filosofo0.setText("Filosofo 0");
+        filosofo0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        filosofo0.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel1.add(filosofo0, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
 
+        filosofo1.setForeground(new java.awt.Color(255, 0, 0));
         filosofo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/filosofo1.png"))); // NOI18N
-        jPanel1.add(filosofo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
+        filosofo1.setText("Filosofo1");
+        filosofo1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        filosofo1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        filosofo1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        jPanel1.add(filosofo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
 
+        filosofo2.setBackground(new java.awt.Color(51, 255, 51));
+        filosofo2.setForeground(new java.awt.Color(51, 204, 0));
         filosofo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/filosofo1.png"))); // NOI18N
-        jPanel1.add(filosofo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
+        filosofo2.setText("Filosofo 2");
+        filosofo2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        filosofo2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        jPanel1.add(filosofo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, -1, -1));
 
+        filosofo3.setForeground(new java.awt.Color(153, 0, 153));
         filosofo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/filosofo1.png"))); // NOI18N
+        filosofo3.setText("Filosofo 3");
+        filosofo3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        filosofo3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jPanel1.add(filosofo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
 
+        filosofo4.setForeground(new java.awt.Color(0, 0, 204));
         filosofo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/filosofo1.png"))); // NOI18N
+        filosofo4.setText("Filosofo 4");
+        filosofo4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        filosofo4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jPanel1.add(filosofo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, -1, -1));
 
         mesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mesa (1).png"))); // NOI18N

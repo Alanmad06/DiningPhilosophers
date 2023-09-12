@@ -18,13 +18,20 @@ import javax.swing.JLabel;
  */
 public class Palillos {
     Random rand = new Random();
-    private final boolean[] Palillos= new boolean[5];
+    Object[] Palillos = new Object[5];
     private ArrayList<Integer> Waiting = new ArrayList<>();
     ImageIcon iconWaiting = new ImageIcon(getClass().getResource("/images/waiting.gif"));
     ImageIcon iconFilosofo = new ImageIcon(getClass().getResource("../images/filosofo1.png"));
     ImageIcon iconPalillo = new ImageIcon(getClass().getResource("../images/palo.png"));
     ImageIcon iconPalilloColor = new ImageIcon(getClass().getResource("../images/palo_color.png"));
-    public boolean[] getPalillos() {
+    ImageIcon iconPalilloColor1 = new ImageIcon(getClass().getResource("../images/palo_color1.png"));
+    ImageIcon iconPalilloColor2 = new ImageIcon(getClass().getResource("../images/palo_color2.png"));
+    ImageIcon iconPalilloColor3 = new ImageIcon(getClass().getResource("../images/palo_color3.png"));
+    ImageIcon iconPalilloColor4 = new ImageIcon(getClass().getResource("../images/palo_color4.png"));
+    ImageIcon iconEating = new ImageIcon(getClass().getResource("../images/dumplin1.gif"));
+     
+     
+    public Object[] getPalillos() {
         return Palillos;
     }
 
@@ -36,48 +43,110 @@ public class Palillos {
         this.Waiting.add(Thinkers);
         
     }
-    
+    public Palillos(){
+        for (int i = 0; i <Palillos.length;i++){
+            Palillos[i]= new Object();
+        }
+    }
  
     
     
     
-    public synchronized void consumiendo(int pal1,int pal2, int filosofo , JLabel Filosofo ,JLabel Palillo1,JLabel Palillo2){
+    public  void consumiendo(int pal1,int pal2, int filosofo , JLabel Filosofo ,JLabel Palillo1,JLabel Palillo2){
+       
         
-        while(this.Palillos[pal1] || this.Palillos[pal2] ){
-            
-            waiting(filosofo,Filosofo);
+        synchronized(Palillos[pal1]){
+            System.out.println("Filosofo" +filosofo+" Tomo el Palillo "+pal1);
+            checkColorPalillo1(filosofo,Palillo1);
+            synchronized(Palillos[pal2]){
+                 checkColorPalillo2(filosofo,Palillo2);
+                 System.out.println("Filosofo" +filosofo+" Tomo el Palillo "+pal2);
+                 
+               eating(filosofo,Filosofo);
+                 
+                System.out.println("Filosofo" +filosofo+" Dejo el Palillo "+pal2);  
+                Palillo2.setIcon(iconPalillo);
+            }
            
-        } 
-         System.out.println("Entro consumiendo Filosofo" +filosofo);
-        
-
-        System.out.println("Filosofo "+filosofo +"Tomo el palillo "+pal1);
-        System.out.println("Filosofo "+filosofo +"Tomo el palillo "+pal2);
-        
-        changeUsePalillo(pal1,Palillo1);
-        changeUsePalillo(pal2,Palillo2);
-        
-       
-       
+             System.out.println("Filosofo" +filosofo+" Dejo el Palillo "+pal1); 
+             Palillo1.setIcon(iconPalillo);
+             Filosofo.setIcon(iconFilosofo);
+        }
         
         
+      
+    }
+    public void checkColorPalillo1(int filosofo,JLabel pal1){
+        
+        switch(filosofo){
+            case 0: 
+                pal1.setIcon(iconPalilloColor);
+                
+                break;
+            case 1: 
+                pal1.setIcon(iconPalilloColor1);
+             
+                break;
+             case 2: 
+                pal1.setIcon(iconPalilloColor2);
+               
+                break;
+                 case 3: 
+                pal1.setIcon(iconPalilloColor3);
+               
+                break;
+               case 4: 
+                pal1.setIcon(iconPalilloColor4);
+             
+                break;
+        }        
     }
     
-    public synchronized void dejarPalillos(int pal1,int pal2,int filosofo,JLabel Label,JLabel Palillo1,JLabel Palillo2){
-          Label.setIcon(iconFilosofo);
-         changeUsePalillo(pal1,Palillo1);
-        changeUsePalillo(pal2,Palillo2);
-        System.out.println("Dejo de comer Filosofo :"+filosofo);
-        notifyAllProcess();
-        
+    public void checkColorPalillo2(int filosofo, JLabel pal2){
+        switch(filosofo){
+            case 0: 
+                
+                pal2.setIcon(iconPalilloColor);
+                break;
+            case 1: 
+              
+                pal2.setIcon(iconPalilloColor1);
+                break;
+             case 2: 
+                
+                pal2.setIcon(iconPalilloColor2);
+                break;
+                 case 3: 
+                
+                pal2.setIcon(iconPalilloColor3);
+                break;
+               case 4: 
+                
+                pal2.setIcon(iconPalilloColor4);
+                break;
+        }        
     }
+ 
     
+     public void eating(int filosofo,JLabel Filosofo){
+        
+        try {
+             long numeroAleatorio = (long) (Math.random() * 4000);
+             System.out.println("Comiendo por "+numeroAleatorio+" Filosofo "+filosofo);
+         Filosofo.setIcon(iconEating);
+            sleep(numeroAleatorio);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Filosofo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
    
     public void notifyAllProcess(){
         System.out.println("Notificando All....");
         notifyAll();
         clearThinkers();
     }
+    
+    
     
     public void waiting(int filosofo,JLabel Label){
         try {
@@ -92,17 +161,7 @@ public class Palillos {
     
     
     
-    
-    public void changeUsePalillo(int i,JLabel Palillo){
-        if(this.Palillos[i]){
-            Palillo.setIcon(iconPalillo);
-            this.Palillos[i]=false;
-        }else{
-            Palillo.setIcon(iconPalilloColor);
-            this.Palillos[i]=true;
-        }
-        
-    }
+
     
     public void clearThinkers(){
         this.Waiting.clear();

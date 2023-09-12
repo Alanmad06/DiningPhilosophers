@@ -25,7 +25,7 @@ public class Procesos {
         return this.palillos.getWaiting();
     }
     
-    public boolean[] getPalillos(){
+    public Object[] getPalillos(){
         return this.palillos.getPalillos();
     }
         
